@@ -1,0 +1,16 @@
+<div class="sliderBlock">
+      <label class="col-md-3 sliderLabel"
+            [ngClass]="{'disabledSpan': isChecked }">
+            <strong>{{ unCheckedValue }}</strong>
+      </label>
+      <label class="col-md-2 switch sliderLabel">
+            <input type="checkbox"
+                  [ngModel]="isChecked"
+                  (ngModelChange)="toggleChange($event)">
+            <span class="slider round"></span>
+      </label>
+      <label class="col-md-3 sliderLabel"
+            [ngClass]="{'disabledSpan': !isChecked }">
+            <strong>{{ checkedValue }}</strong>
+      </label>
+</div>

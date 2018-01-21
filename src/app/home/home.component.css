@@ -1,0 +1,70 @@
+.divIcon {
+    display:inline; 
+    padding:0; 
+    margin:0; 
+    /* width:10px; 
+    height:10px; */
+}
+
+.spanIcon {
+    transform:scale(0.5); 
+    color:#ccc;
+}
+
+.divPopover {
+    display: inline-block;
+    margin-top: 30px;
+    position: absolute;
+    margin-left: -20px;
+}
+
+.divShape {
+    display:block; 
+    width:10px;
+    height:10px; 
+    background-color:#8595dc; 
+    z-index:100; 
+    transform: matrix(1, 1, 0, 1, 0, 5);
+}
+
+.minWageBlock {
+    display:block; 
+    background-color: #8595dc; 
+    color:#fff; 
+    z-index: 101; 
+    font-size: 12px; 
+    padding: 10px 15px;
+}
+
+input[name=salarySum] {
+    border-radius:15px; 
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    font-weight:bold;
+    padding-left: 15px;
+}
+
+input[name=salarySum]:focus{
+    border-radius: 15px;
+    outline:none;
+}
+
+.fullSalaryInfo {
+    display:block; 
+    position:absolute; 
+    background-color: #ecd68b; 
+    z-index: 100; 
+    font-size: 15px; 
+    margin-top:20px;
+    min-width: 450px;
+}
+
+.divPadding {
+    padding-top: 20px; 
+    padding-left: 15px;
+}
+
+.grayText {
+    color: gray;
+    font-size: 13px;
+}

@@ -1,0 +1,105 @@
+
+<form #f="ngForm"
+      class="container">
+    <div>
+        <div>
+            <p class="row justify-content-start grayText">Сумма</p>
+            <table>
+                <tbody>
+                    <tr *ngFor="let salaryType of salaryTypes">
+                        <td>
+                            <input type="radio" 
+                                    name="radiogroup" 
+                                    [checked]="salaryType.id === 1" 
+                                    [value]="salaryType.id" 
+                                    (change)="changeSalaryType(salaryType)">
+                        </td>
+                        <td>
+                            <strong>{{salaryType.name}}</strong>
+                            <div *ngIf="(salaryType.id == 2) && !showCloseIcon"
+                                  class="divIcon"
+                                  (mouseover)="showMinWageBlock=true"
+                                  (mouseleave)="showMinWageBlock=false"
+                                  (click)="showCloseIcon=true">
+                                <span class="fa-stack fa-lg spanIcon">
+                                        <i class="fa fa-info fa-stack-1x"></i>
+                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                </span>
+                            </div>
+                            <div *ngIf="(salaryType.id == 2) && showCloseIcon"
+                                  class="divIcon"
+                                  (click)="showMinWageBlock=false; showCloseIcon=false;">
+                                <span class="fa-stack fa-lg spanIcon">
+                                    <i class="fa fa-close fa-stack-1x"></i>
+                                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                </span>
+                            </div>
+                            <div class="divPopover">
+                                <div *ngIf="(salaryType.id == 2) && showMinWageBlock"
+                                     class="divShape"></div>
+                                <div *ngIf="(salaryType.id == 2) && showMinWageBlock"
+                                      class="col-md-6 minWageBlock">
+                                    <span>МРОТ - минимальный размер оплаты труда. Разный для разных регионов.</span>
+                                </div>
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div *ngIf="selectedSalaryType?.id != 2">
+            <div>
+                <app-slider [(isChecked)]="isChecked" 
+                            [unCheckedValue]="unCheckedValue"
+                            [checkedValue]="checkedValue"></app-slider>
+            </div>
+            <div>
+                <input  type="number"
+                        name="salarySum"
+                        [(ngModel)]="salary"/>
+                <i class="fa fa-rub" aria-hidden="true"></i>
+                <span *ngIf="selectedSalaryType?.id == 3">в день</span>
+                <span *ngIf="selectedSalaryType?.id == 4">в час</span>
+            </div>
+        </div>
+
+        <div *ngIf="(selectedSalaryType?.id == 1) && (salary > 0)"
+            class="col-md-4 fullSalaryInfo">
+            <div *ngIf="isChecked"
+                class="form-group divPadding">
+                <p class="row">
+                    <strong>{{ salary | currency:'RUB':'symbol-narrow':'1.0-2'}}</strong> 
+                    <span>&nbsp; сотрудник будет получать на руки</span>
+                    
+                </p>
+                <p class="row">
+                    <strong>{{ (salary/87) * 13  | currency:'RUB':'symbol-narrow':'1.0-2'}}</strong>
+                    <span>&nbsp; НДФЛ, 13% от оклада</span>
+                </p>
+                <p class="row">
+                    <strong>{{ (salary/87) * 100 | currency:'RUB':'symbol-narrow':'1.0-2'}}</strong>
+                    <span>&nbsp; за сотрудника в месяц</span>
+                </p>
+            </div>
+
+            <div *ngIf="!isChecked"
+                 class="form-group divPadding">
+                <p class="row">
+                    <strong>{{ salary * 0.87 | currency:'RUB':'symbol-narrow':'1.0-2':'ru'}}</strong> 
+                    <span>&nbsp;сотрудник будет получать на руки</span>
+                    
+                </p>
+                <p class="row">
+                    <strong>{{ salary * 0.13  | currency:'RUB':'symbol-narrow':'1.0-2'}}</strong>
+                    <span>&nbsp; НДФЛ, 13% от оклада</span>
+                </p>
+                <p class="row">
+                    <strong>{{ salary | currency:'RUB':'symbol-narrow':'1.0-2'}}</strong>
+                    <span>&nbsp; за сотрудника в месяц</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</form>
